@@ -104,7 +104,9 @@ PRIO_USER: int
 P_ALL: int
 P_PGID: int
 P_PID: int
-P_PIDFD: int
+
+if sys.version_info >= (3, 9):
+    P_PIDFD: int
 
 RTLD_DEEPBIND: int
 RTLD_GLOBAL: int
