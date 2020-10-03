@@ -408,7 +408,7 @@ if sys.platform != "win32":
 
 def putenv(__name: Union[bytes, str], __value: Union[bytes, str]) -> None: ...
 
-if sys.platform != "win32":
+if sys.version_info >= (3, 9) or sys.platform != "win32":
     def unsetenv(__name: Union[bytes, str]) -> None: ...
 
 _Opener = Callable[[str, int], int]

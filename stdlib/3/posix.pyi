@@ -32,6 +32,8 @@ class sched_param(NamedTuple):
 CLD_CONTINUED: int
 CLD_DUMPED: int
 CLD_EXITED: int
+CLD_KILLED: int
+CLD_STOPPED: int
 CLD_TRAPPED: int
 
 EX_CANTCREAT: int
@@ -102,6 +104,7 @@ PRIO_USER: int
 P_ALL: int
 P_PGID: int
 P_PID: int
+P_PIDFD: int
 
 RTLD_DEEPBIND: int
 RTLD_GLOBAL: int
@@ -167,6 +170,12 @@ else:
     def listdir(path: bytes) -> List[bytes]: ...
     @overload
     def listdir(path: int) -> List[str]: ...
+
+if sys.version_info >= (3, 9) and sys.platform == "linux":
+    def pidfd_open(pid: int, flags: int) -> int: ...
+
+if sys.version_info >= (3, 9):
+    def waitstatus_to_exitcode(status: int) -> int: ...
 
 if sys.platform == "win32":
     environ: Dict[str, str]
