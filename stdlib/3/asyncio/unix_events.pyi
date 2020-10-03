@@ -60,3 +60,4 @@ if sys.version_info >= (3, 9):
     _T6 = TypeVar("_T6", bound=PidfdChildWatcher)
     class PidfdChildWatcher(AbstractChildWatcher):
         def __enter__(self: _T6) -> _T6: ...
+        def _do_wait(self, pid: int) -> None: ...  # undocumented
